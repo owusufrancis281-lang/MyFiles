@@ -95,7 +95,33 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
     window.location.href = "index.html";
 
 });
+const snapshot = await getDocs(collection(db, "files"));
 
+let total = 0;
+let images = 0;
+let documents = 0;
+let videos = 0;
+
+snapshot.forEach((doc) => {
+
+    const file = doc.data();
+
+    total++;
+
+    if (file.fileType && file.fileType.startsWith("image/")) {
+        images++;
+    } else if (file.fileType && file.fileType.startsWith("video/")) {
+        videos++;
+    } else {
+        documents++;
+    }
+
+});
+
+document.getElementById("totalFiles").textContent = total;
+document.getElementById("totalImages").textContent = images;
+document.getElementById("totalDocuments").textContent = documents;
+document.getElementById("totalVideos").textContent = videos;
 </script>
 </body>
 
