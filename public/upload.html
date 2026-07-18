@@ -32,7 +32,27 @@
 <button type="button">⬅ Back to Dashboard</button>
 </a>
 <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 
+import {
+getFirestore,
+collection,
+addDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  const firebaseConfig = {
+  apiKey: "AIzaSyB0i-UUX2LjqK19Z0rzpirEF8mTnEeH9c4",
+  authDomain: "police-file.firebaseapp.com",
+  projectId: "police-file",
+  storageBucket: "police-file.firebasestorage.app",
+  messagingSenderId: "678648437133",
+  appId: "1:678648437133:web:3bf6d3d2c597549966c5c4"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+    
 const cloudName = "crsyohqc";
 const uploadPreset = "myfiles_upload";
 
