@@ -41,7 +41,64 @@ placeholder="Search files...">
 <a href="dashboard.html">
 <button>⬅ Back to Dashboard</button>
 </a>
+<script type="module">
 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyB0i-UUX2LjqK19Z0rzpirEF8mTnEeH9c4",
+  authDomain: "police-file.firebaseapp.com",
+  projectId: "police-file",
+  storageBucket: "police-file.firebasestorage.app",
+  messagingSenderId: "678648437133",
+  appId: "1:678648437133:web:3bf6d3d2c597549966c5c4"
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+const snapshot = await getDocs(collection(db, "files"));
+
+
+snapshot.forEach((doc)=>{
+
+let file = doc.data();
+
+
+document.getElementById("fileTable").innerHTML += `
+
+<tr>
+
+<td>${file.fileName}</td>
+
+<td>${file.fileType}</td>
+
+<td>${file.uploadedAt.toDate()}</td>
+
+<td>
+<a href="${file.fileURL}" target="_blank">
+Download
+</a>
+</td>
+
+</tr>
+
+`;
+
+});
+
+
+</script>
 </body>
 
 </html>
