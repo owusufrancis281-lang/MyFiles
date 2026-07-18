@@ -99,6 +99,19 @@ const data = await response.json();
 console.log(data);
 
 
+await addDoc(collection(db, "files"), {
+
+    fileName: file.name,
+
+    fileURL: data.secure_url,
+
+    fileType: file.type,
+
+    uploadedAt: new Date()
+
+});
+
+
 alert("File uploaded successfully!");
 
 
